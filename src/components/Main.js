@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Header from './Header';
-import Category from '.Category';
+import Category from './Category';
 
 //Sample data
 const data = {
@@ -14,8 +14,7 @@ const data = {
         // ...other categories
 };
 
-const Main = () => {
-    return (
+const Main = () => {    return (
         <>
         <Header />
         <main className="p-4">

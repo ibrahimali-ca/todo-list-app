@@ -1,6 +1,6 @@
 // Header.js 
 import React from 'react';
-import profilePic from './public/IMG_2754 2.jpg'; // Make sure to import the actual image
+import profilePic from '../assets/profile-pic.jpg'; // Make sure to import the actual image
 
 const Header = () => {
     return (
