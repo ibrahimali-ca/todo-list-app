@@ -52,6 +52,8 @@ const Main = () => {
                         key={categoryName} 
                         categoryName={categoryName} 
                         tasks={tasks}
+                        onComplete={toggleTaskCompletion} // Function to mark task as complete
+                        onDelete={deleteTask} // Function to delete a task
                         addTask={addTask}
                         deleteTask={deleteTask} 
                         toggleTaskCompletion={toggleTaskCompletion}
