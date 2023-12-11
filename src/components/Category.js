@@ -12,7 +12,8 @@ const Category = ({ categoryName, tasks, onComplete, onDelete }) => {
                     key={task.id}
                     id={task.id} // Make sure to pass the id to the Task component 
                     title={task.title} 
-                    dueTime={task.dueTime} 
+                    dueTime={task.dueTime}
+                    completed={task.completed} // Pass completed property 
                     onComplete={onComplete} // Pass onComplete function
                     onDelete={onDelete} // Pass onDelete function
                     />

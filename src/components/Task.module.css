@@ -1,11 +1,11 @@
 /* Task.module.css */
-.completed-task {
+.completedTask {
     text-decoration: line-through;
     color: grey;
     opacity: 0.6; /* Default text color */
 }
 
-.incomplete-task {
+.incompleteTask {
     /* Basic or default text styles; modify as needed */
     color: #212529; /* Default text color */
 }

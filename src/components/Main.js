@@ -8,8 +8,8 @@ const Main = () => {
     // Define initial state for tasks using useState hook
     const [tasks, setTasks] = useState({
         mathHomework: [
-            { id: 1, title: 'Differential Equations', dueTime: 'Due in 1 day, 24 hours, and 15 minutes'},
-            { id: 2, title: 'Matrix Algebra', dueTime: 'Due in 2 days, 14 hours, and 15 minutes'}
+            { id: 1, title: 'Differential Equations', dueTime: 'Due in 1 day, 24 hours, and 15 minutes', completed: false},
+            { id: 2, title: 'Matrix Algebra', dueTime: 'Due in 2 days, 14 hours, and 15 minutes', completed: false},
             // ... other tasks
         ],
         // ...other categories
