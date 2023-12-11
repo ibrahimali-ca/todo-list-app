@@ -1,62 +1,58 @@
-// Main.js
-
 import React, { useState } from 'react';
 import Header from './Header';
 import Category from './Category';
+import TaskInputForm from './TaskInputForm'; // Import the TaskInputForm component
 
 const Main = () => {
     // Define initial state for tasks using useState hook
     const [tasks, setTasks] = useState({
         mathHomework: [
-            { id: 1, title: 'Differential Equations', dueTime: 'Due in 1 day, 24 hours, and 15 minutes', completed: false},
-            { id: 2, title: 'Matrix Algebra', dueTime: 'Due in 2 days, 14 hours, and 15 minutes', completed: false},
+            { id: 1, title: 'Differential Equations', dueTime: 'Due in 1 day, 24 hours, and 15 minutes', completed: false },
+            { id: 2, title: 'Matrix Algebra', dueTime: 'Due in 2 days, 14 hours, and 15 minutes', completed: false },
             // ... other tasks
         ],
-        // ...other categories
+        // ... other categories if any
     });
 
-    // Function to add a new task (example - this will need to be integrated into your UI)
-    const addTask = (category, newTask) => {
+    // Function to add a new task
+    const addTask = (newTask) => {
+        // Example: Add new task to 'mathHomework' category or any default category you choose
         setTasks({
             ...tasks,
-            [category]: [...tasks[category], newTask]
+            mathHomework: [...tasks.mathHomework, { ...newTask, id: Date.now(), completed: false }]
         });
     };
 
-    // Function to delete a task
-    const deleteTask = (category, taskId) => {
-        setTasks({
-            ...tasks,
-            [category]: tasks[category].filter(task => task.id !== taskId)
-        });
-    };
-
-    // Function to mark a task as complete
-    // This assumes tasks have a 'completed' property that you toggle
+    // ... existing deleteTask and toggleTaskCompletion functions
     const toggleTaskCompletion = (category, taskId) => {
-        setTasks({
-            ...tasks,
-            [category]: tasks[category].map(task => 
+        setTasks(prevTasks => ({
+            ...prevTasks,
+            [category]: prevTasks[category].map(task => 
                 task.id === taskId ? { ...task, completed: !task.completed } : task
             )
-        });
+        }));
     };
-
+    
+    const deleteTask = (category, taskId) => {
+        setTasks(prevTasks => ({
+            ...prevTasks,
+            [category]: prevTasks[category].filter(task => task.id !== taskId)
+        }));
+    };
+        
     return (
         <>
             <Header />
+            <TaskInputForm onAddTask={addTask} /> {/* Include the TaskInputForm */}
             <main className="p-4">
                 <h1 className="text-4xl font-bold mb-6">To-Do List</h1>
                 {Object.entries(tasks).map(([categoryName, tasksInCategory]) => (
                     <Category 
                         key={categoryName} 
                         categoryName={categoryName} 
-                        tasks={tasksInCategory} // Pass tasks in category
-                        onComplete={(taskId) => toggleTaskCompletion(categoryName, taskId)} // Scoped to the category
-                        onDelete={(taskId) => deleteTask(categoryName, taskId)} // Scoped to the category
-                        addTask={addTask}
-                        deleteTask={deleteTask} 
-                        toggleTaskCompletion={toggleTaskCompletion}
+                        tasks={tasksInCategory}
+                        onComplete={(taskId) => toggleTaskCompletion(categoryName, taskId)}
+                        onDelete={(taskId) => deleteTask(categoryName, taskId)}
                     />
                 ))}
             </main>
