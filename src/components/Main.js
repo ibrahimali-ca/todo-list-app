@@ -47,13 +47,13 @@ const Main = () => {
             <Header />
             <main className="p-4">
                 <h1 className="text-4xl font-bold mb-6">To-Do List</h1>
-                {Object.entries(tasks).map(([categoryName, tasks]) => (
+                {Object.entries(tasks).map(([categoryName, tasksInCategory]) => (
                     <Category 
                         key={categoryName} 
                         categoryName={categoryName} 
-                        tasks={tasks}
-                        onComplete={toggleTaskCompletion} // Function to mark task as complete
-                        onDelete={deleteTask} // Function to delete a task
+                        tasks={tasksInCategory} // Pass tasks in category
+                        onComplete={(taskId) => toggleTaskCompletion(categoryName, taskId)} // Scoped to the category
+                        onDelete={(taskId) => deleteTask(categoryName, taskId)} // Scoped to the category
                         addTask={addTask}
                         deleteTask={deleteTask} 
                         toggleTaskCompletion={toggleTaskCompletion}
