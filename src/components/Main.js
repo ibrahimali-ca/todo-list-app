@@ -6,21 +6,28 @@ import TaskInputForm from './TaskInputForm'; // Import the TaskInputForm compone
 const Main = () => {
     // Define initial state for tasks using useState hook
     const [tasks, setTasks] = useState({
-        mathHomework: [
+        school: [
             { id: 1, title: 'Differential Equations', dueTime: 'Due in 1 day, 24 hours, and 15 minutes', completed: false },
             { id: 2, title: 'Matrix Algebra', dueTime: 'Due in 2 days, 14 hours, and 15 minutes', completed: false },
             // ... other tasks
         ],
-        // ... other categories if any
+        personal: [],
+        work: [],
     });
 
     // Function to add a new task
-    const addTask = (newTask) => {
-        // Example: Add new task to 'mathHomework' category or any default category you choose
-        setTasks({
-            ...tasks,
-            mathHomework: [...tasks.mathHomework, { ...newTask, id: Date.now(), completed: false }]
-        });
+    const addTask = (category, newTask) => {
+        if (tasks[category]) {
+            console.log("Category not found");
+            setTasks(prevTasks => ({
+                ...prevTasks,
+                [category]: [...prevTasks[category], { ...newTask, id: Date.now(), completed: false }]
+            }));
+
+        } else {
+            // Handle the case where the category does not exist
+            console.log("Category not found");
+        }
     };
 
     // ... existing deleteTask and toggleTaskCompletion functions
@@ -32,7 +39,7 @@ const Main = () => {
             )
         }));
     };
-    
+
     const deleteTask = (category, taskId) => {
         setTasks(prevTasks => ({
             ...prevTasks,
