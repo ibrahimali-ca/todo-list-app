@@ -7,16 +7,15 @@ const Main = () => {
     // Define initial state for tasks using useState hook
     const [tasks, setTasks] = useState({
         school: [
-            { id: 1, title: 'Differential Equations', dueTime: 'Due in 1 day, 24 hours, and 15 minutes', completed: false },
-            { id: 2, title: 'Matrix Algebra', dueTime: 'Due in 2 days, 14 hours, and 15 minutes', completed: false },
+            { id: 1, title: 'Differential Equations', dueTime: 'Due in 1 day', completed: false },
+            { id: 2, title: 'Matrix Algebra', dueTime: 'Due in 2 days', completed: false },
             // ... other tasks
         ],
         personal: [],
         work: [],
-        general: [] // Initialize the default category
     });
 
-    const defaultCategory = "general"; //Define a default category
+    const defaultCategory = "personal"; //Define a default category
 
     // Function to add a new task
     const addTask = (newTask, category) => { // Add category parameter

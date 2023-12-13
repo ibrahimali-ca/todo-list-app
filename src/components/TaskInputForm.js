@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 
 const TaskInputForm = ({ onAddTask, categories }) => {
         const [title, setTitle] = useState('');
-        const [dueTime, setDueTime] = useState('');
+        const [dueDate, setDueDate] = useState('');
         const [selectedCategory, setSelectedCategory] = useState(categories[0] || '');
 
         const handleSubmit = (event) => {
             event.preventDefault();
 
-            // Debugging: Log the title and dueTime
-        console.log("Submitting:", title, dueTime);
+            // Debugging: Log the title and dueDate
+        console.log("Submitting:", title, dueDate);
 
-            onAddTask({ title, dueTime }, selectedCategory,); // Pass the new task to the parent component
+            onAddTask({ title, dueDate }, selectedCategory,); // Pass the new task to the parent component
             setTitle('');
-            setDueTime('');
+            setDueDate('');
         };
         console.log("Category selected:", selectedCategory);
 
@@ -27,12 +27,12 @@ return (
             className="w-full p-2 border-2 border-gray 200 rounded-md"
         />
         <input
-            type="text"
-            value={dueTime}
-            onChange={(e) => setDueTime(e.target.value)}
-            placeholder="Due Time"
-            className="w-full p-2 border-2 border-gray-200 rounded-md"
-        />
+                type="date"
+                value={dueDate}
+                onChange={(e) => setDueDate(e.target.value)}
+                className="form-input px-4 py-2 border rounded"
+            />
+
         <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}
         className="p-2 border-2 border-gray-200 rounded-md"
         >
