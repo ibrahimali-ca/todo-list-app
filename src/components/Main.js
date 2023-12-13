@@ -39,18 +39,19 @@ const Main = () => {
             )
         }));
     };
-
+    // Function to delete a task
     const deleteTask = (category, taskId) => {
         setTasks(prevTasks => ({
             ...prevTasks,
             [category]: prevTasks[category].filter(task => task.id !== taskId)
         }));
     };
-        
+    // Define your categories
+    const categories = ['school', 'personal', 'work']; 
     return (
         <>
             <Header />
-            <TaskInputForm onAddTask={addTask} /> {/* Include the TaskInputForm */}
+            <TaskInputForm onAddTask={addTask} categories={categories} /> {/* Include the TaskInputForm */}
             <main className="p-4">
                 <h1 className="text-4xl font-bold mb-6">To-Do List</h1>
                 {Object.entries(tasks).map(([categoryName, tasksInCategory]) => (
