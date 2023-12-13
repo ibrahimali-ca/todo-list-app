@@ -3,11 +3,15 @@ import React, { useState } from 'react';
 const TaskInputForm = ({ onAddTask, categories }) => {
         const [title, setTitle] = useState('');
         const [dueTime, setDueTime] = useState('');
-        const [selectedCategory, setSelectedCategory] = useState('categories[0]');
+        const [selectedCategory, setSelectedCategory] = useState(categories[0] || '');
 
         const handleSubmit = (event) => {
             event.preventDefault();
-            onAddTask(selectedCategory, { title, dueTime }); // Pass the new task to the parent component
+
+            // Debugging: Log the title and dueTime
+        console.log("Submitting:", title, dueTime);
+
+            onAddTask({ title, dueTime }, selectedCategory,); // Pass the new task to the parent component
             setTitle('');
             setDueTime('');
         };

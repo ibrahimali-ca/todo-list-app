@@ -13,22 +13,21 @@ const Main = () => {
         ],
         personal: [],
         work: [],
+        general: [] // Initialize the default category
     });
 
-    // Function to add a new task
-    const addTask = (category, newTask) => {
-        if (tasks[category]) {
-            console.log("Category not found");
-            setTasks(prevTasks => ({
-                ...prevTasks,
-                [category]: [...prevTasks[category], { ...newTask, id: Date.now(), completed: false }]
-            }));
+    const defaultCategory = "general"; //Define a default category
 
-        } else {
-            // Handle the case where the category does not exist
-            console.log("Category not found");
-        }
+    // Function to add a new task
+    const addTask = (newTask, category) => { // Add category parameter
+        const taskCategory = category && tasks[category] ? category : defaultCategory; // Use default category if category is not provided
+        setTasks(prevTasks => ({ // Use the spread operator to add the new task to the tasks object
+            ...prevTasks,
+            [taskCategory]: [...(prevTasks[taskCategory] || []), { ...newTask, id: Date.now(), completed: false }] // Use the spread operator to add the new task to the tasks array
+        }));
+        console.log("Adding to category:", taskCategory, "Task:", newTask);
     };
+    
 
     // ... existing deleteTask and toggleTaskCompletion functions
     const toggleTaskCompletion = (category, taskId) => {
@@ -48,6 +47,7 @@ const Main = () => {
     };
     // Define your categories
     const categories = ['school', 'personal', 'work']; 
+
     return (
         <>
             <Header />
