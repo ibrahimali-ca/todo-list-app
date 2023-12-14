@@ -7,8 +7,8 @@ const Main = () => {
     // Define initial state for tasks using useState hook
     const [tasks, setTasks] = useState({
         school: [
-            { id: 1, title: 'Differential Equations', dueTime: 'Due in 1 day', completed: false },
-            { id: 2, title: 'Matrix Algebra', dueTime: 'Due in 2 days', completed: false },
+            { id: 1, title: 'Differential Equations', dueDate: 'No due date', completed: false },
+            { id: 2, title: 'Matrix Algebra', dueDate: 'No due date', completed: false },
             // ... other tasks
         ],
         personal: [],
@@ -24,12 +24,12 @@ const Main = () => {
             ...prevTasks,
             [taskCategory]: [...(prevTasks[taskCategory] || []), { ...newTask, id: Date.now(), completed: false }] // Use the spread operator to add the new task to the tasks array
         }));
-        console.log("Adding to category:", taskCategory, "Task:", newTask);
     };
     
 
-    // ... existing deleteTask and toggleTaskCompletion functions
+    // Function to delete a task
     const toggleTaskCompletion = (category, taskId) => {
+        // Update the tasks with the toggled task
         setTasks(prevTasks => ({
             ...prevTasks,
             [category]: prevTasks[category].map(task => 
@@ -39,6 +39,7 @@ const Main = () => {
     };
     // Function to delete a task
     const deleteTask = (category, taskId) => {
+        // Update the tasks state without the deleted task
         setTasks(prevTasks => ({
             ...prevTasks,
             [category]: prevTasks[category].filter(task => task.id !== taskId)

@@ -6,16 +6,11 @@ const TaskInputForm = ({ onAddTask, categories }) => {
         const [selectedCategory, setSelectedCategory] = useState(categories[0] || '');
 
         const handleSubmit = (event) => {
-            event.preventDefault();
-
-            // Debugging: Log the title and dueDate
-        console.log("Submitting:", title, dueDate);
-
+            event.preventDefault(); 
             onAddTask({ title, dueDate }, selectedCategory,); // Pass the new task to the parent component
             setTitle('');
             setDueDate('');
         };
-        console.log("Category selected:", selectedCategory);
 
 return (
     <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 items-center">
